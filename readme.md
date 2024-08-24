@@ -1,5 +1,12 @@
 ## Plasma Configs
 
+## ZSH Configs
+- For the shell itself, using [Oh-My-ZSH](https://github.com/ohmyzsh/ohmyzsh) and [Starship](https://github.com/starship/starship)
+- Some cool tools:
+	- [LSD](https://github.com/lsd-rs/lsd)
+	- [Micro](https://github.com/zyedidia/micro)
+
+
 ### Plasma Widgets: 
 - [Compact Pager](https://github.com/dhruv8sh/plasma6-desktop-indicator)
 - [Panel Spacer Extended](https://github.com/luisbocanegra/plasma-panel-spacer-extended)
