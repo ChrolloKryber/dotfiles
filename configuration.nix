@@ -19,11 +19,16 @@
   
   networking.hostName = "NixOS"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
+  
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  networking.firewall = {
+  	allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+  	allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+  };
+  
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -48,18 +53,6 @@
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
-
-  # Wacom tablet config
-
-  # services.xserver.inputClassSections = [
-  	# ''
-  	# Indentifier "One by Wacom (small)"
- 	# MatchUSBID "0x056a:0x037a"
- 	# MatchDevicePath "/dev/input/event18"
- 	# MatchIsTablet "on"
- 	# Driver "wacom"
-  	# ''
-  # ];
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -123,20 +116,23 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    pkgs.opentabletdriver
-    pkgs.materia-kde-theme
     pkgs.catppuccin-kvantum
-    pkgs.usbutils
-  	pkgs.lsd
-  	pkgs.kdePackages.qtstyleplugin-kvantum
-    pkgs.zsh
-    pkgs.obsidian
-    pkgs.steam
-    pkgs.micro
-    pkgs.zsh-autosuggestions
-    pkgs.zsh-syntax-highlighting
-    pkgs.vscode
     pkgs.git
+    pkgs.kdePackages.kdeconnect-kde
+  	pkgs.kdePackages.qtstyleplugin-kvantum
+  	pkgs.lsd
+    pkgs.materia-kde-theme
+    pkgs.micro
+    pkgs.obsidian
+    pkgs.opentabletdriver
+    pkgs.spotify
+    pkgs.steam
+    pkgs.starship
+    pkgs.vscode
+    pkgs.usbutils
+    pkgs.zsh
+    pkgs.zsh-syntax-highlighting
+    pkgs.zsh-autosuggestions
   ];
   
   qt.style = "kvantum";
@@ -180,6 +176,7 @@
     };
     syntaxHighlighting.enable = true;
     autosuggestions.enable = true;
+    interactiveShellInit = ''eval "$(${pkgs.starship}/bin/starship init zsh)"'';
   };
 
   # Steam Config
@@ -202,7 +199,24 @@
   	wantedBy = [ "multi-user.target" ];
   };
 
+  # Timer to copy config
+  systemd.timers."copy-config" = {
+  	wantedBy = [ "timers.target" ];
+  	timerConfig = {
+  		OnBootSec = "2h";
+  		Persistent = true;
+  	};
+  };
 
+  systemd.services."copy-config" = {
+	serviceConfig = {
+		Type = "oneshot";
+		User = "root";
+		ExecStart = "/run/current-system/sw/bin/zsh /copy.sh";
+	};
+   };
+
+  
   # AppleEmoji
   # fonts.packages = with pkgs; [
 	# (fetchurl {
@@ -220,4 +234,35 @@
   # Tablet Config
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
+
+  # Starship
+  programs.starship = {
+  	enable = true;
+  	settings = {
+  		character = {
+  			success_symbol =  "[λ](bold green)";
+			error_symbol = "[λ](bold red)";
+		};
+  	};
+  };
+
+  programs.kdeconnect.enable = true;
+
+  # Firefox settings about:config
+  programs.firefox = {
+  	preferences = {
+  		"browser.urlbar.shortcuts.bookmarks" = false;
+  		"browser.urlbar.shortcuts.history" = false;
+  		"browser.urlbar.shortcuts.tabs" = false;
+  		"browser.urlbar.suggest.bookmark" = false;
+  		"browser.urlbar.suggest.pocket" = false;
+  		"extensions.pocket.api" = "0.0.0.0";
+  		"extensions.pocket.bffApi" = "0.0.0.0";
+  		"extensions.pocket.bffRecentSaves" = false;
+  		"extensions.pocket.enabled" = false;
+  		"fission.autostart" = false;
+  		"gfx.webrender.all" = false;
+  	};
+  };
+  
 }
