@@ -111,27 +111,27 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    pkgs.catppuccin-kvantum
-    pkgs.git
-    pkgs.kdePackages.kdeconnect-kde
-  	pkgs.kdePackages.qtstyleplugin-kvantum
-  	pkgs.lsd
-    pkgs.materia-kde-theme
-    pkgs.micro
-    pkgs.noto-fonts
-    pkgs.obsidian
-    pkgs.opentabletdriver
-    pkgs.spotify
-    pkgs.steam
-    pkgs.starship
-    pkgs.telegram-desktop
-    pkgs.vlc
-    pkgs.vscode
-    pkgs.usbutils
-    pkgs.xclip
-    pkgs.zsh
-    pkgs.zsh-syntax-highlighting
-    pkgs.zsh-autosuggestions
+    catppuccin-kvantum
+    git
+    kdePackages.kdeconnect-kde
+  	kdePackages.qtstyleplugin-kvantum
+  	lsd
+    materia-kde-theme
+    micro
+    noto-fonts
+    obsidian
+    opentabletdriver
+    spotify
+    steam
+    starship
+    telegram-desktop
+    vlc
+    vscode
+    usbutils
+    xclip
+    zsh
+    zsh-syntax-highlighting
+    zsh-autosuggestions
   ];
   
   qt.style = "kvantum";
