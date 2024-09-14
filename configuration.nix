@@ -24,11 +24,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  networking.firewall = {
-  	allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
-  	allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
-  };
-  
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -123,13 +118,17 @@
   	pkgs.lsd
     pkgs.materia-kde-theme
     pkgs.micro
+    pkgs.noto-fonts
     pkgs.obsidian
     pkgs.opentabletdriver
     pkgs.spotify
     pkgs.steam
     pkgs.starship
+    pkgs.telegram-desktop
+    pkgs.vlc
     pkgs.vscode
     pkgs.usbutils
+    pkgs.xclip
     pkgs.zsh
     pkgs.zsh-syntax-highlighting
     pkgs.zsh-autosuggestions
@@ -150,6 +149,10 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
+  networking.firewall = {
+  	allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+  	allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+  };
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
@@ -199,34 +202,6 @@
   	wantedBy = [ "multi-user.target" ];
   };
 
-  # Timer to copy config
-  systemd.timers."copy-config" = {
-  	wantedBy = [ "timers.target" ];
-  	timerConfig = {
-  		OnBootSec = "2h";
-  		Persistent = true;
-  	};
-  };
-
-  systemd.services."copy-config" = {
-	serviceConfig = {
-		Type = "oneshot";
-		User = "root";
-		ExecStart = "/run/current-system/sw/bin/zsh /copy.sh";
-	};
-   };
-
-  
-  # AppleEmoji
-  # fonts.packages = with pkgs; [
-	# (fetchurl {
-	# 	url = "https://github.com/samuelngs/apple-emoji-linux/releases/download/v17.4/AppleColorEmoji.ttf";
-	# 	# sha256 = "ae005179c64e4413b38583ed66468f3f728f3e5c84344758cc3d9b2596335f8a";
-	# 	sha256 = "SG3JQLybhY/fMX+XqmB/BKhQSBB0N1VRqa+H6laVUPE=";
-	# })
-	# nerdfonts.override { fonts = [ "JetBrainsMono" ];}
-  # ];
-
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
@@ -260,9 +235,18 @@
   		"extensions.pocket.bffApi" = "0.0.0.0";
   		"extensions.pocket.bffRecentSaves" = false;
   		"extensions.pocket.enabled" = false;
+  		"extensions.pocket.showHome" = false;
   		"fission.autostart" = false;
   		"gfx.webrender.all" = false;
   	};
+  };
+
+  # Sudo Config
+  security.sudo = {
+  	extraConfig = ''
+	  Defaults pwfeedback
+	  Defaults insults
+  	'';
   };
   
 }
