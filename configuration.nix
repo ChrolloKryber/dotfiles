@@ -18,6 +18,14 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   
   networking.hostName = "NixOS"; # Define your hostname.
+  networking.nameservers = ["1.1.1.1" "1.0.0.1" "8.8.8.8"];
+
+  # StevenBlack hosts file
+  networking.stevenblack = {
+  	enable = true;
+  	block = [ "fakenews" "gambling" ];
+  };
+  
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   
   # Configure network proxy if necessary
@@ -69,6 +77,10 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable OpenGL and video drivers
+  hardware.graphics.enable = true;
+
+  services.xserver.videoDrivers = ["amdgpu"];
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -109,8 +121,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
     catppuccin-kvantum
     git
     kdePackages.kdeconnect-kde
@@ -118,17 +128,21 @@
   	lsd
     materia-kde-theme
     micro
-    noto-fonts
     obsidian
     opentabletdriver
+    pipes
+    python3
     spotify
     steam
     starship
     telegram-desktop
+    usbutils
     vlc
     vscode
-    usbutils
+    wmctrl
     xclip
+    xorg.xprop
+    yt-dlp
     zsh
     zsh-syntax-highlighting
     zsh-autosuggestions
@@ -179,14 +193,31 @@
     };
     syntaxHighlighting.enable = true;
     autosuggestions.enable = true;
-    interactiveShellInit = ''eval "$(${pkgs.starship}/bin/starship init zsh)"'';
+    shellAliases = {
+      ls="lsd";
+      ll="ls -lh";
+      la="ls -lha";
+      l="ls -lhA";
+      nano="micro";
+      sudo="sudo ";     
+    };
+    interactiveShellInit = ''
+      unalias -a
+      eval "$(${pkgs.starship}/bin/starship init zsh)"
+    '';
   };
 
   # Steam Config
   programs.steam = {
   	enable = true;
+  	gamescopeSession.enable = true;
   };
-  
+
+  programs.gamemode.enable = true;
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
 
   # Systemd battery threshold service
   systemd.services.battery-charge-threshold = {
@@ -199,11 +230,16 @@
   		ExecStart = "/run/current-system/sw/bin/zsh -c 'echo 85 > /sys/class/power_supply/BAT0/charge_control_end_threshold'";
   		Restart = "on-failure";
   	};
-  	wantedBy = [ "multi-user.target" ];
+  	wantedBy = [ "multi-user.target"  "local-fs.target" "suspend.target"];
+  	after = [ "local-fs.target" "suspend.target" ];
   };
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+    unifont
   ];
 
   # Tablet Config
