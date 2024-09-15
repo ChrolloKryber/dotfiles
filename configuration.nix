@@ -17,15 +17,18 @@
   # Kernel packages
   boot.kernelPackages = pkgs.linuxPackages_latest;
   
-  networking.hostName = "NixOS"; # Define your hostname.
-  networking.nameservers = ["1.1.1.1" "1.0.0.1" "8.8.8.8"];
+  networking = {
+    hostName = "NixOS"; # Define your hostname.
+    nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" ];
+    networkmanager.dns = "none";
 
-  # StevenBlack hosts file
-  networking.stevenblack = {
-  	enable = true;
-  	block = [ "fakenews" "gambling" ];
+    stevenblack = {
+      enable = true;
+      block = ["fakenews" "gambling"];
+    };
   };
-  
+
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   
   # Configure network proxy if necessary
@@ -50,7 +53,7 @@
     LC_NUMERIC = "en_IN";
     LC_PAPER = "en_IN";
     LC_TELEPHONE = "en_IN";
-    LC_TIME = "en_IN";
+    LC_TIME = "en_US.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -123,6 +126,7 @@
   environment.systemPackages = with pkgs; [
     catppuccin-kvantum
     git
+    kdePackages.applet-window-buttons6
     kdePackages.kdeconnect-kde
   	kdePackages.qtstyleplugin-kvantum
   	lsd
@@ -235,11 +239,12 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
     unifont
+    wqy_zenhei
   ];
 
   # Tablet Config
