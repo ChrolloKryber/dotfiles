@@ -53,7 +53,7 @@
     LC_NUMERIC = "en_IN";
     LC_PAPER = "en_IN";
     LC_TELEPHONE = "en_IN";
-    LC_TIME = "en_US.UTF-8";
+    LC_TIME = "en_GB.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -66,8 +66,16 @@
   services.desktopManager.plasma6.enable = true;
 
   # Bluetooth configuration
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth = {
+  	enable = true;
+  	powerOnBoot = true;
+  	settings = {
+  	  General = {
+  	  	Enable = "Source,Sink,Media,Socket";
+  	  	Experimental = true;
+  	  };
+  	};
+  };
 
   services.blueman.enable = true;
 
@@ -83,6 +91,16 @@
 
   # Enable OpenGL and video drivers
   hardware.graphics.enable = true;
+
+  # Docker Settings
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+    	enable = true;
+    	setSocketVariable = true;
+    };
+
+  };
 
   services.xserver.videoDrivers = ["amdgpu"];
   # Enable sound with pipewire.
@@ -108,7 +126,7 @@
   users.users.raghav = {
     isNormalUser = true;
     description = "Rishay Raghav";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "adm" "docker" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
@@ -125,28 +143,52 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    blueberry
+    brightnessctl
     catppuccin-kvantum
+    cliphist
+    fastfetch
     git
+    gnome-keyring
+    hyprpicker
+    killall
+    kitty
     kdePackages.applet-window-buttons6
     kdePackages.kdeconnect-kde
-  	kdePackages.qtstyleplugin-kvantum
-  	lsd
+    kdePackages.qtstyleplugin-kvantum
+    libnotify
+    lsd
     materia-kde-theme
     micro
+    neovim
+    networkmanagerapplet
+    nwg-look
     obsidian
-    opentabletdriver
     pipes
+    playerctl
+    pwvucontrol
     python3
+    qbittorrent
+    qdirstat
+    ripgrep
+    rofi-wayland
+    ryzenadj
     spotify
     steam
     starship
+    swaynotificationcenter
+    swww
     telegram-desktop
     usbutils
     vlc
     vscode
+    waybar
+    wallust
+    wl-clipboard
+    wlogout
     wmctrl
     xclip
-    xorg.xprop
+    xdg-desktop-portal-hyprland
     yt-dlp
     zsh
     zsh-syntax-highlighting
@@ -154,6 +196,27 @@
   ];
   
   qt.style = "kvantum";
+
+  ### Hyprland setup
+  programs.hyprland = {
+  	enable = true;
+  	xwayland.enable = true;
+  };
+
+  programs.hyprlock.enable = true;
+  # programs.nm-applet.indicator = true;
+
+  environment.sessionVariables = {
+  	NIXOS_OZONE_WL = "1";
+  	# WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
+  xdg.portal = {
+  	enable = true;
+  	extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -165,12 +228,16 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   networking.firewall = {
   	allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
   	allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+  };
+
+  networking.firewall = {
+  	allowedTCPPorts = [22];
   };
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -207,6 +274,7 @@
       sudo="sudo ";     
     };
     interactiveShellInit = ''
+      cat $HOME/.cache/wallust/sequences
       unalias -a
       eval "$(${pkgs.starship}/bin/starship init zsh)"
     '';
@@ -248,9 +316,11 @@
   ];
 
   # Tablet Config
-  hardware.opentabletdriver.enable = true;
-  hardware.opentabletdriver.daemon.enable = true;
-
+  hardware.opentabletdriver = {
+  	enable = true;
+  	blacklistedKernelModules = [ "wacom" "hid_uclogic"];
+  };
+  
   # Starship
   programs.starship = {
   	enable = true;

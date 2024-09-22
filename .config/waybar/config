@@ -1,0 +1,32 @@
+{
+    "include": [
+        "$HOME/.config/waybar/module",
+    ],
+    "layer": "top",
+    "position": "top",
+    "height": "auto",
+    "spacing": 4,
+
+    "fixed-center": true,
+    "reload_style_on_change": true,
+	
+    "modules-left": [
+        "custom/apps",
+    ],
+
+    "modules-center": [
+        "custom/swaync",
+        "hyprland/workspaces",
+    ],
+
+    "modules-right": [
+    	"mpris",
+	"pulseaudio",
+        "backlight",
+        "battery",
+        "tray",
+        "clock",
+        "custom/lock",
+        "custom/power",
+    ],
+}
