@@ -19,3 +19,5 @@
 - [KDE Rounded Corners](https://github.com/matinlotfali/KDE-Rounded-Corners)
 
 ![Desktop Look](image.png)
+
+Thanks to @XNM1's [hyprlock config](https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/)
