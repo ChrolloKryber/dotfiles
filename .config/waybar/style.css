@@ -12,6 +12,7 @@ window#waybar {
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
+    margin-top: 2px;
 }
 
 window#waybar.hidden {
@@ -75,6 +76,12 @@ button:hover {
 
 #workspaces button.urgent {
     background-color: #eb4d4b;
+}
+
+#workspaces button.active {
+    transition: ease-in 500ms;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
 }
 
 #mode {
