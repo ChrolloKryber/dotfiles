@@ -12,21 +12,29 @@
 	
     "modules-left": [
         "custom/apps",
+        "custom/separator#line",
+        "group/system"
     ],
 
     "modules-center": [
         "custom/swaync",
+        "custom/separator#line",
         "hyprland/workspaces",
     ],
 
     "modules-right": [
-    	"mpris",
-	"pulseaudio",
+        "mpris",
+        "custom/separator#line",
+        "pulseaudio",
+        "custom/separator#line",
         "backlight",
+        "custom/separator#line",
         "battery",
+        "custom/separator#line",
         "tray",
+        "custom/separator#line",
         "clock",
-        "custom/lock",
-        "custom/power",
+        "custom/separator#line",
+        "group/power"
     ],
 }

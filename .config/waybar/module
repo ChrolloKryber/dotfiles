@@ -1,8 +1,42 @@
 {
     "custom/apps": {
-       "format": "Apps",
+       "format": "",
        "on-click": "~/.config/waybar/scripts/Apps.sh",
        "tooltip": false,
+    },
+
+    "group/system": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+        },
+        "modules": [
+            "cpu",
+            "disk",
+            "memory",
+            "temperature",
+        ],
+    },
+
+    "cpu": {
+        "format": " {icon} - {}%",
+        "format-icons": [""],
+    },
+
+   "disk": {
+        "interval": 30,
+        "format": " - {percentage_used}%",
+    },
+
+    "memory": {
+        "format": " {icon} - {}%",
+        "format-icons": [""],
+    },
+
+    "temperature": {
+        "format": " {icon} - {}%",
+        "format-icons": [""],
     },
 
     "custom/separator#dot": {
@@ -51,7 +85,7 @@
     },
 
     "custom/lock": {
-        "format": "<span foreground='#D9BA6C'>  </span>",
+        "format": "<span foreground='#D9BA6C'></span>",
         "on-click": "hyprlock",
     },
     
@@ -110,18 +144,17 @@
     },
 
     "mpris": {
-	"ignored-players": ["kdeconnect"],
-	"interval": 1,
-	"title-len": 15,
-	"format": "{player_icon} - {title}", 
-	"format_paused": " {player_icon}",
-	"player-icons": {
-		"default": "▶",
-		"mpv": "",
-		"vlc": "󰕼",
-		"spotify": "",
-	},
-
+    	"ignored-players": ["kdeconnect"],
+	    "interval": 1,
+    	"title-len": 15,
+	    "format": "{player_icon} - {title}", 
+    	"format_paused": " {player_icon}",
+	    "player-icons": {
+	    	"default": "▶",
+		    "mpv": "",
+    		"vlc": "󰕼",
+	    	"spotify": "",
+	    },
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
@@ -171,5 +204,17 @@
     "tray": {
     	"icon-size": 22,
 	"spacing": 5,
+    },
+
+    "group/power": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+        },
+        "modules": [
+                "custom/power",
+                "custom/lock",
+        ],
     },
 }
