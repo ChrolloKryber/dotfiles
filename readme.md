@@ -22,3 +22,5 @@
 ![NixOS Desktop](desktop.png)
 ![Tiling](nixosHyprland.png)
 Thanks to @XNM1's [hyprlock config](https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/)
+
+And even bigger thanks to @JaKooLit's amazing [dotfiles](https://github.com/JaKooLit/Hyprland-Dots/)
