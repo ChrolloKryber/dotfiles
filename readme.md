@@ -19,5 +19,6 @@
 - [KDE Rounded Corners](https://github.com/matinlotfali/KDE-Rounded-Corners)
 
 ![Desktop Look](image.png)
-
+![NixOS Desktop](desktop.png)
+![Tiling](nixosHyprland.png)
 Thanks to @XNM1's [hyprlock config](https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/)

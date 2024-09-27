@@ -20,22 +20,22 @@
     },
 
     "cpu": {
-        "format": " {icon} - {}%",
+        "format": " {icon} {}%",
         "format-icons": [""],
     },
 
    "disk": {
         "interval": 30,
-        "format": " - {percentage_used}%",
+        "format": " {percentage_used}%",
     },
 
     "memory": {
-        "format": " {icon} - {}%",
+        "format": " {icon} {}%",
         "format-icons": [""],
     },
 
     "temperature": {
-        "format": " {icon} - {}%",
+        "format": " {icon} {}C",
         "format-icons": [""],
     },
 
