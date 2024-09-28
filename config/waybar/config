@@ -31,7 +31,6 @@
 
     "modules-right": [
         "mpris",
-        "custom/separator#line",
         "pulseaudio",
         "custom/separator#line",
         "backlight",

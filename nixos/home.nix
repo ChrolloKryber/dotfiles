@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = "archer";
   home.homeDirectory = "/home/archer";
 
@@ -15,36 +13,37 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
   home.packages = with pkgs; [
     materia-kde-theme
     kdePackages.qtstyleplugin-kvantum
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
 
   qt.enable = true;
-  qt.platformTheme.name = "gtk";
+  qt.platformTheme.name = "qt5ct";
   qt.style.name = "adwaita-dark";
   qt.style.package = pkgs.adwaita-qt;
 
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.tela-icon-theme;
+      name = "Tela-purple-dark";
+    };
+  };
 
-  
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "image/jpeg"= ["org.gnome.Loupe.desktop"];
+      "image/png"= ["org.gnome.Loupe.desktop"];
+    };
+
+    defaultApplications = {
+      "image/jpeg"= ["org.gnome.Loupe.desktop"];
+      "image/png"= ["org.gnome.Loupe.desktop"];      
+    };
+  };
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -76,9 +75,6 @@
   #
   #  /etc/profiles/per-user/archer/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    EDITOR="nvim";
-  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

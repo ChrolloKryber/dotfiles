@@ -31,4 +31,6 @@
     logo = pkgs.catppuccin-plymouth;
   };
 
+  stylix.targets.lightdm.enable = true;
+  stylix.targets.gtk.enable = true;
 }

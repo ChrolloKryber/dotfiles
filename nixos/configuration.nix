@@ -63,15 +63,18 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+#  services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm = {
+# services.displayManager.sddm = {
+#   enable = true;
+#   wayland.enable = true;
+#   theme = "${import ./sddm-theme.nix {inherit pkgs;}}";
+# };
+  
+  services.xserver.displayManager.lightdm.greeters.slick = {
     enable = true;
-    wayland.enable = true;
-    theme = "${import ./sddm-theme.nix {inherit pkgs;}}";
   };
-#  services.desktopManager.plasma6.enable = true;
 
   # Bluetooth configuration
   hardware.bluetooth = {
@@ -156,20 +159,20 @@
     blueberry
     brightnessctl
     cliphist
-    dracula-icon-theme
+    evince
     fastfetch
     git
     gnome-keyring
     grimblast
     hyprpicker
-    hyprshot
     kdePackages.kdeconnect-kde
     killall
     kitty
     libnotify
+    loupe
     lsd
     micro
-    neovim
+    nautilus
     networkmanagerapplet
     obsidian
     pipes
@@ -181,9 +184,7 @@
     ripgrep
     rofi-wayland
     rofi-emoji-wayland
-    rose-pine-cursor
     ryzenadj
-    sddm-astronaut
     spotify
     steam
     starship
@@ -206,6 +207,18 @@
     zsh-syntax-highlighting
     zsh-autosuggestions
   ];
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
+
+  environment.variables = {
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+    EDITOR = "nvim";
+  };
   
   ### Hyprland setup
   programs.hyprland = {
