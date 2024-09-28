@@ -143,30 +143,46 @@
         },
     },
 
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+	"deactivated": "",
+      },
+    },
+
     "mpris": {
     	"ignored-players": ["kdeconnect"],
-	    "interval": 1,
+	"interval": 1,
     	"title-len": 15,
-	    "format": "{player_icon} - {title}", 
-    	"format_paused": " {player_icon}",
-	    "player-icons": {
-	    	"default": "▶",
-		    "mpv": "",
-    		"vlc": "󰕼",
-	    	"spotify": "",
-	    },
+	"format": "{player_icon} - {title}", 
+    	"format-paused": " {player_icon}",
+	"player-icons": {
+		"default": "▶",
+		"mpv": "",
+		"vlc": "󰕼",
+		"spotify": "",
+		"firefox": " "
+	},
     },
+
     "pulseaudio": {
         "format": "{icon} {volume}%",
 	"format-bluetooth": "<b>󰗾</b> {volume}%",
         "format-icons": [ " ", " "],
         "format-muted": "  {volume}%",
         "on-click": "pwvucontrol",
+	"on-click-middle": "wpctl set-mute @DEFAULT_SINK@ toggle",
+	"scroll-step": 5.0
     },
 
     "backlight": {
         "format": "{icon} {percent}%",
-        "format-icons": ["󰃜 ", "󰃛 ", "󰃚 "]
+        "format-icons": ["󰃜 ", "󰃛 ", "󰃚 "],
+	"on-scroll-up": "brightnessctl set +5%",
+	"on-scroll-down": "brightnessctl set 5%-",
+	"on-click-middle": "hyprctl keyword monitor 'eDP-1, disable'",
+	"on-click-right": "hyprctl keyword monitor 'eDP-1, 1920x1080@60, 1920x0, 1.2'",
     },
 
     "battery": {

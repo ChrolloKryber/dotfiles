@@ -16,13 +16,17 @@
     "modules-left": [
         "custom/apps",
         "custom/separator#line",
-        "group/system"
+        "group/system",
+	"custom/separator#line",
+	"hyprland/window"
     ],
 
     "modules-center": [
         "custom/swaync",
         "custom/separator#line",
         "hyprland/workspaces",
+	"custom/separator#line",
+	"idle_inhibitor"
     ],
 
     "modules-right": [

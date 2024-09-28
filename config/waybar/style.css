@@ -2,8 +2,7 @@
 /* Catppuccin Mocha */
 
 * {
-  font-family: "JetBrainsMono Nerd Font";
-  font-weight: bold;
+  font-family: "JetBrainsMono";
   min-height: 0;
   /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
   font-size: 97%;
@@ -87,10 +86,6 @@ window#waybar.empty #window {
 
 .modules-left, .modules-right {
   border: 1px solid @blue;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-right: 4px;
-  padding-left: 4px;
 } 
 
 #backlight,
@@ -153,8 +148,9 @@ window#waybar.empty #window {
 }
 
 #custom-apps {
-  padding: 0px 4px;
   color: @blue;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #custom-swaync {
@@ -164,7 +160,15 @@ window#waybar.empty #window {
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
-  color: #39FF14;
+  color: @blue;
+}
+
+#idle_inhibitor.deactivated {
+  color: @red;
+}
+
+#idle_inhibitor {
+  margin-right: 5px;
 }
 
 #bluetooth,
@@ -239,6 +243,7 @@ window#waybar.empty #window {
 
 #custom-power {
   color: @red;
+  margin-right: 5px;
 }
 
 #custom-updater {

@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./firefox.nix
       inputs.home-manager.nixosModules.default
+      ./stylix.nix
     ];
   
 
@@ -154,7 +155,6 @@
   environment.systemPackages = with pkgs; [
     blueberry
     brightnessctl
-    catppuccin-kvantum
     cliphist
     dracula-icon-theme
     fastfetch
@@ -180,6 +180,7 @@
     qdirstat
     ripgrep
     rofi-wayland
+    rofi-emoji-wayland
     rose-pine-cursor
     ryzenadj
     sddm-astronaut

@@ -17,7 +17,9 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
+    materia-kde-theme
+    kdePackages.qtstyleplugin-kvantum
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -40,17 +42,6 @@
   qt.platformTheme.name = "gtk";
   qt.style.name = "adwaita-dark";
   qt.style.package = pkgs.adwaita-qt;
-
-  gtk.enable = true;
-
-  gtk.theme.package = pkgs.kanagawa-gtk-theme;
-  gtk.theme.name = "Kanagawa-B";
-
-  gtk.cursorTheme.package = pkgs.bibata-cursors;
-  gtk.cursorTheme.name = "Bibata-Modern-Ice";
-
-  gtk.iconTheme.package = pkgs.tela-icon-theme;
-  gtk.iconTheme.name = "Tela-purple-dark";
 
 
   
@@ -86,9 +77,8 @@
   #  /etc/profiles/per-user/archer/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR="nvim";
   };
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
