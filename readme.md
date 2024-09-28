@@ -18,9 +18,13 @@
 - [Plasma6 Window Title Applet](https://github.com/dhruv8sh/plasma6-window-title-applet)
 - [KDE Rounded Corners](https://github.com/matinlotfali/KDE-Rounded-Corners)
 
+Hyprland Setup
+![NixOS Desktop](Desktop.png)
+![Tiling](NixOS.png)
+---
+Old KDE Plasma 6 setup
 ![Desktop Look](image.png)
-![NixOS Desktop](desktop.png)
-![Tiling](nixosHyprland.png)
+
 Thanks to @XNM1's [hyprlock config](https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/)
 
 And even bigger thanks to @JaKooLit's amazing [dotfiles](https://github.com/JaKooLit/Hyprland-Dots/)
