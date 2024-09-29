@@ -23,26 +23,26 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   
   networking = {
+    networkmanager.enable = true;
+    networkmanager.dns = "none";
     hostName = "NixOS"; # Define your hostname.
     nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" ];
-    networkmanager.dns = "none";
 
     stevenblack = {
       enable = true;
       block = ["fakenews" "gambling"];
     };
-  };
+    
+    firewall = {
+      allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+      allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+      allowedTCPPorts = [22];
+    };
+};
 
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 
@@ -61,46 +61,34 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-#  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-# services.displayManager.sddm = {
-#   enable = true;
-#   wayland.enable = true;
-#   theme = "${import ./sddm-theme.nix {inherit pkgs;}}";
-# };
-  
-  services.xserver.displayManager.lightdm.greeters.slick = {
-    enable = true;
+  services.xserver = {
+    enable = true; 
+    displayManager.gdm= {
+      enable = true;
+      wayland = true;
+    };
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
+    videoDrivers = ["amdgpu"];
   };
 
   # Bluetooth configuration
   hardware.bluetooth = {
-  	enable = true;
-  	powerOnBoot = true;
-  	settings = {
-  	  General = {
-  	  	Enable = "Source,Sink,Media,Socket";
-  	  	Experimental = true;
-  	  };
-  	};
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+      };
+    };
   };
 
   services.blueman.enable = true;
-
-  # hardware.pulseaudio.enable = true;
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
   services.printing.enable = false;
 
-  # Enable OpenGL and video drivers
   hardware.graphics.enable = true;
 
   # Docker Settings
@@ -113,7 +101,6 @@
 
   };
 
-  services.xserver.videoDrivers = ["amdgpu"];
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -138,7 +125,7 @@
   users.users.archer = {
     isNormalUser = true;
     description = "Archer";
-    extraGroups = [ "networkmanager" "wheel" "adm" "docker" ];
+    extraGroups = [ "adbusers" "networkmanager" "wheel" "adm" "docker" ];
     shell = pkgs.zsh;
   };
   
@@ -156,6 +143,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    android-tools
     blueberry
     brightnessctl
     cliphist
@@ -171,7 +159,6 @@
     libnotify
     loupe
     lsd
-    micro
     nautilus
     networkmanagerapplet
     obsidian
@@ -185,7 +172,7 @@
     rofi-wayland
     rofi-emoji-wayland
     ryzenadj
-    spotify
+    spotube
     steam
     starship
     swaynotificationcenter
@@ -199,8 +186,6 @@
     waybar
     wl-clipboard
     wlogout
-    wmctrl
-    xclip
     xdg-desktop-portal-hyprland
     yt-dlp
     zsh
@@ -254,14 +239,6 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall = {
-  	allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
-  	allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
-  };
-
-  networking.firewall = {
-  	allowedTCPPorts = [22];
-  };
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.

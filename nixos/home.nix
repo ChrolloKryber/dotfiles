@@ -46,6 +46,7 @@
       "application/xhtml+xml"= ["firefox.desktop"];
       "application/x-extension-xhtml"= ["firefox.desktop"];
       "application/x-extension-xht"= ["firefox.desktop"];
+      "text/markdown"= ["code.desktop"];
     };
 
     defaultApplications = {
@@ -61,7 +62,7 @@
       "application/xhtml+xml"= ["firefox.desktop"];
       "application/x-extension-xhtml"= ["firefox.desktop"];
       "application/x-extension-xht"= ["firefox.desktop"];
- 
+      "text/markdown"= ["code.desktop"];
     };
   };
 
