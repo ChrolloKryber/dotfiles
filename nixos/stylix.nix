@@ -24,7 +24,7 @@
   };
 
   stylix.cursor.package = pkgs.oreo-cursors-plus;
-  stylix.cursor.name = "oreo_purple_cursors";
+  stylix.cursor.name = "oreo_red_cursors";
 
   stylix.targets.plymouth = {
     enable = true;

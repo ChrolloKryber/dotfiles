@@ -16,7 +16,14 @@
   home.packages = with pkgs; [
     materia-kde-theme
     kdePackages.qtstyleplugin-kvantum
+    qt5ct
+    qt6ct
+    koodo-reader
+    terraform
+    spotify
   ];
+
+  nixpkgs.config.allowUnfree = true;
 
   qt.enable = true;
   qt.platformTheme.name = "qt5ct";
@@ -26,43 +33,43 @@
   gtk = {
     enable = true;
     iconTheme = {
-      package = pkgs.tela-icon-theme;
-      name = "Tela-purple-dark";
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
     };
   };
 
   xdg.mimeApps = {
     enable = true;
     associations.added = {
-      "image/jpeg"= ["org.gnome.Loupe.desktop"];
-      "image/png"= ["org.gnome.Loupe.desktop"];
-      "x-scheme-handler/http"=["firefox.desktop"];
-      "x-scheme-handler/https"=["firefox.desktop"];
-      "x-scheme-handler/chrome"=["firefox.desktop"];
-      "text/html"=["firefox.desktop"];
-      "application/x-extension-htm"= ["firefox.desktop"];
-      "application/x-extension-html"= ["firefox.desktop"];
-      "application/x-extension-shtml"= ["firefox.desktop"];
-      "application/xhtml+xml"= ["firefox.desktop"];
-      "application/x-extension-xhtml"= ["firefox.desktop"];
-      "application/x-extension-xht"= ["firefox.desktop"];
-      "text/markdown"= ["code.desktop"];
+      "image/jpeg" = ["org.gnome.Loupe.desktop"];
+      "image/png" = ["org.gnome.Loupe.desktop"];
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
+      "x-scheme-handler/chrome" = ["firefox.desktop"];
+      "text/html" = ["firefox.desktop"];
+      "application/x-extension-htm" = ["firefox.desktop"];
+      "application/x-extension-html" = ["firefox.desktop"];
+      "application/x-extension-shtml" = ["firefox.desktop"];
+      "application/xhtml+xml" = ["firefox.desktop"];
+      "application/x-extension-xhtml" = ["firefox.desktop"];
+      "application/x-extension-xht" = ["firefox.desktop"];
+      "text/markdown" = ["code.desktop"];
     };
 
     defaultApplications = {
-      "image/jpeg"= ["org.gnome.Loupe.desktop"];
-      "image/png"= ["org.gnome.Loupe.desktop"];
-      "x-scheme-handler/http"=["firefox.desktop"];
-      "x-scheme-handler/https"=["firefox.desktop"];
-      "x-scheme-handler/chrome"=["firefox.desktop"];
-      "text/html"=["firefox.desktop"];
-      "application/x-extension-htm"= ["firefox.desktop"];
-      "application/x-extension-html"= ["firefox.desktop"];
-      "application/x-extension-shtml"= ["firefox.desktop"];
-      "application/xhtml+xml"= ["firefox.desktop"];
-      "application/x-extension-xhtml"= ["firefox.desktop"];
-      "application/x-extension-xht"= ["firefox.desktop"];
-      "text/markdown"= ["code.desktop"];
+      "image/jpeg" = ["org.gnome.Loupe.desktop"];
+      "image/png" = ["org.gnome.Loupe.desktop"];
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
+      "x-scheme-handler/chrome" = ["firefox.desktop"];
+      "text/html" = ["firefox.desktop"];
+      "application/x-extension-htm" = ["firefox.desktop"];
+      "application/x-extension-html" = ["firefox.desktop"];
+      "application/x-extension-shtml" = ["firefox.desktop"];
+      "application/xhtml+xml" = ["firefox.desktop"];
+      "application/x-extension-xhtml" = ["firefox.desktop"];
+      "application/x-extension-xht" = ["firefox.desktop"];
+      "text/markdown" = ["code.desktop"];
     };
   };
 

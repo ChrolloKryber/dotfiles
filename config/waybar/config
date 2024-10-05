@@ -9,24 +9,24 @@
     "margin-top": 3,
     "margin-left": 20,
     "margin-right": 20,
-
+    "output": ["HDMI-A-1", "eDP-1"],
     "fixed-center": true,
     "reload_style_on_change": true,
 
     "modules-left": [
         "custom/apps",
         "custom/separator#line",
-        "group/system",
-	"custom/separator#line",
-	"hyprland/window"
+    	"hyprland/window"
     ],
 
     "modules-center": [
         "custom/swaync",
         "custom/separator#line",
         "hyprland/workspaces",
-	"custom/separator#line",
-	"idle_inhibitor"
+	    "custom/separator#line",
+        "clock",
+        "custom/separator#line",
+    	"idle_inhibitor"
     ],
 
     "modules-right": [
@@ -38,8 +38,6 @@
         "battery",
         "custom/separator#line",
         "tray",
-        "custom/separator#line",
-        "clock",
         "custom/separator#line",
         "group/power"
     ],

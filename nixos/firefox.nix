@@ -78,7 +78,10 @@
 install_url="https://addons.mozilla.org/firefox/downloads/latest/nicothin-space/latest.xpi";
  	  installation_mode = "force_installed";
 	};
-
+	"deArrow@ajay.app" = {
+	  install_url = "https://addons.mozilla.org/firefox/downloads/latest/dearrow/latest.xpi";
+	  installation_mode = "force_installed";
+	};
     };
 	};
     

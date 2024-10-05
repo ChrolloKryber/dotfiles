@@ -38,7 +38,7 @@
       allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
       allowedTCPPorts = [22];
     };
-};
+  };
 
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -134,7 +134,7 @@
     users = {
       "archer" = import ./home.nix;
     };
-    backupFileExtension = "backup";
+    backupFileExtension = "bak";
   };
 
   # Allow unfree packages
@@ -166,6 +166,7 @@
     playerctl
     pwvucontrol
     python3
+    qalculate-gtk
     qbittorrent
     qdirstat
     ripgrep
@@ -173,7 +174,6 @@
     rofi-emoji-wayland
     ryzenadj
     spotube
-    steam
     starship
     swaynotificationcenter
     swww
@@ -188,9 +188,6 @@
     wlogout
     xdg-desktop-portal-hyprland
     yt-dlp
-    zsh
-    zsh-syntax-highlighting
-    zsh-autosuggestions
   ];
 
   programs.neovim = {
@@ -202,7 +199,6 @@
 
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
-    EDITOR = "nvim";
   };
   
   ### Hyprland setup
@@ -275,6 +271,8 @@
     };
     interactiveShellInit = ''
       unalias -a
+      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+      source ${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh
       eval "$(${pkgs.starship}/bin/starship init zsh)"
     '';
   };
@@ -310,10 +308,10 @@
     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
     noto-fonts
     noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
     noto-fonts-color-emoji
     unifont
   ];
-
   # Tablet Config
   hardware.opentabletdriver = {
   	enable = true;
@@ -324,13 +322,12 @@
   programs.starship = {
   	enable = true;
   	settings = {
-  		character = {
-  			success_symbol =  "[λ](bold green)";
-			error_symbol = "[λ](bold red)";
-		};
+  	  character = {
+  	    success_symbol =  "[λ](bold green)";
+		error_symbol = "[λ](bold red)";
+	  };
   	};
   };
-
 
   # Sudo Config
   security.sudo = {
@@ -339,5 +336,4 @@
 	  Defaults insults
   	'';
   };
-  
 }
