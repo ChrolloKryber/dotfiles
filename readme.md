@@ -1,6 +1,15 @@
 ### NixOS config
 [WIP] Config for my NixOS system, will update as I explore more
 
+
+Hyprland Setup
+---
+![NixOS Desktop](Desktop.png)
+![Tiling](NixOS.png)
+---
+Old KDE Plasma 6 setup
+![Desktop Look](image.png)
+
 ## Plasma Configs
 
 ## ZSH Configs
@@ -17,13 +26,6 @@
 - [Application Title Bar](https://github.com/antroids/application-title-bar)
 - [Plasma6 Window Title Applet](https://github.com/dhruv8sh/plasma6-window-title-applet)
 - [KDE Rounded Corners](https://github.com/matinlotfali/KDE-Rounded-Corners)
-
-Hyprland Setup
-![NixOS Desktop](Desktop.png)
-![Tiling](NixOS.png)
----
-Old KDE Plasma 6 setup
-![Desktop Look](image.png)
 
 Thanks to @XNM1's [hyprlock config](https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/)
 
