@@ -60,18 +60,19 @@
     LC_TELEPHONE = "en_IN";
     LC_TIME = "en_GB.UTF-8";
   };
-
+  
   services.xserver = {
     enable = true; 
-    displayManager.gdm= {
-      enable = true;
-      wayland = true;
-    };
     xkb = {
       layout = "us";
-      variant = "";
     };
     videoDrivers = ["amdgpu"];
+  };
+
+  services.displayManager.sddm= {
+      enable = true;
+      wayland.enable = true;
+      theme = "chili";
   };
 
   # Bluetooth configuration
@@ -91,13 +92,19 @@
 
   hardware.graphics.enable = true;
 
-  # Docker Settings
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
+  # Virtualisation Settings
+  virtualisation = {
+    docker = {
+      enable = true;
+      rootless = {
     	enable = true;
     	setSocketVariable = true;
+      };
     };
+
+    virtualbox.host.enable = true;
+    virtualbox.guest.enable = true;
+    virtualbox.guest.dragAndDrop = true;
 
   };
 
@@ -110,31 +117,28 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+
+  programs.adb.enable = true;
   users.users.archer = {
     isNormalUser = true;
     description = "Archer";
-    extraGroups = [ "adbusers" "networkmanager" "wheel" "adm" "docker" ];
+    extraGroups = [ "adbusers" "networkmanager" "wheel" "adm" "docker" "vboxusers" ];
     shell = pkgs.zsh;
   };
   
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "backup";
+    
     users = {
       "archer" = import ./home.nix;
     };
-    backupFileExtension = "bak";
   };
 
   # Allow unfree packages
@@ -143,19 +147,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    android-tools
-    blueberry
     brightnessctl
+    busybox
     cliphist
     evince
     fastfetch
     git
     gnome-keyring
     grimblast
-    hyprpicker
     kdePackages.kdeconnect-kde
-    killall
-    kitty
     libnotify
     loupe
     lsd
@@ -168,11 +168,10 @@
     python3
     qalculate-gtk
     qbittorrent
-    qdirstat
     ripgrep
     rofi-wayland
-    rofi-emoji-wayland
     ryzenadj
+    sddm-chili-theme
     spotube
     starship
     swaynotificationcenter
@@ -246,7 +245,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
 
   # ZSH Config  
@@ -265,7 +264,7 @@
       ls="lsd";
       ll="ls -lh";
       la="ls -lha";
-      l="ls -lhA";
+      lA="ls -lhA";
       nano="nvim";
       sudo="sudo ";     
     };
@@ -324,7 +323,7 @@
   	settings = {
   	  character = {
   	    success_symbol =  "[λ](bold green)";
-		error_symbol = "[λ](bold red)";
+	    error_symbol = "[λ](bold red)";
 	  };
   	};
   };

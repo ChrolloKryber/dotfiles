@@ -11,20 +11,21 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home.stateVersion = "24.11"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    materia-kde-theme
     kdePackages.qtstyleplugin-kvantum
+    kitty
+    koodo-reader
+    materia-kde-theme
     qt5ct
     qt6ct
-    koodo-reader
-    terraform
     spotify
+    terraform
   ];
 
   nixpkgs.config.allowUnfree = true;
-
+  
   qt.enable = true;
   qt.platformTheme.name = "qt5ct";
   qt.style.name = "adwaita-dark";
@@ -33,10 +34,11 @@
   gtk = {
     enable = true;
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
+      package = pkgs.paper-icon-theme;
+      name = "Paper";
     };
   };
+
 
   xdg.mimeApps = {
     enable = true;
@@ -54,6 +56,7 @@
       "application/x-extension-xhtml" = ["firefox.desktop"];
       "application/x-extension-xht" = ["firefox.desktop"];
       "text/markdown" = ["code.desktop"];
+      "inode/directory" = ["/org.gnome.Nautilus.desktop"];
     };
 
     defaultApplications = {
@@ -70,7 +73,12 @@
       "application/x-extension-xhtml" = ["firefox.desktop"];
       "application/x-extension-xht" = ["firefox.desktop"];
       "text/markdown" = ["code.desktop"];
+      "inode/directory" = ["/org.gnome.Nautilus.desktop"];
     };
+  };
+
+  home.sessionVariables = {
+    TERMINAL = "kitty";
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -88,22 +96,6 @@
     # '';
   };
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/archer/etc/profile.d/hm-session-vars.sh
-  #
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

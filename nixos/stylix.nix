@@ -1,36 +1,32 @@
 { config, pkgs, inputs, lib, ...}:
 
 {
-  stylix.enable = true;
-  stylix.polarity = "dark";
-  stylix.image = ./wallpaper.png;
-
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-  
-  stylix.fonts = {
-    monospace = {
-      package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
-      name = "JetBrainsMono Nerd Font";
-    };
-    serif = config.stylix.fonts.monospace;
-    sansSerif = config.stylix.fonts.monospace;
-    
-    sizes = {
-      applications = 12;
-      terminal = 15;
-      desktop = 10;
-      popups = 10;
-    };
-  };
-
-  stylix.cursor.package = pkgs.oreo-cursors-plus;
-  stylix.cursor.name = "oreo_red_cursors";
-
-  stylix.targets.plymouth = {
+  stylix = {
     enable = true;
-    logo = pkgs.catppuccin-plymouth;
-  };
+    autoEnable = true;
+    polarity = "dark";
+    image = ./wallpaper.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+  
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+        name = "JetBrainsMono Nerd Font";
+      };
+      serif = config.stylix.fonts.monospace;
+      sansSerif = config.stylix.fonts.monospace;
 
-  stylix.targets.gnome.enable = true;
-  stylix.targets.gtk.enable = true;
+      sizes = {
+        applications = 12;
+        terminal = 15;
+        desktop = 10;
+        popups = 10;
+      };
+    };
+
+    cursor.package = pkgs.oreo-cursors-plus;
+    cursor.name = "oreo_red_cursors";
+    opacity.desktop = 0.9;
+
+  };
 }

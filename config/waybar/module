@@ -106,6 +106,7 @@
             "class<spotify>": " Spotify",
             "Spotube": " Spotube",
             "nvim (.*)": " $1",
+            "(.*) WhatsApp (.*)": " ",
             "(.*) Dropbox (.*)": " $1",
             "": "Hyprland"
         },
@@ -153,6 +154,7 @@
           "title<.*reddit.*>": "",
           "title<.*amazon.*>": "",
           "title<.*Picture-in-Picture.*>": "",
+          "title<.*WhatsApp — Mozilla Firefox>": "",
           "title<Bluetooth Devices>": "",
           "title<.*[Dd]iscord.*>": "",
           "class<firefox> title<.*github.*>": "",
@@ -185,7 +187,7 @@
     	"ignored-players": ["kdeconnect"],
 	"interval": 1,
     	"title-len": 15,
-	"format": "{player_icon} {title} - {artist}", 
+	"format": "{player_icon} {title} ", 
     	"format-paused": " {player_icon}",
 	"player-icons": {
 		"default": "▶",

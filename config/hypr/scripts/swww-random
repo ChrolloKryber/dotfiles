@@ -9,7 +9,6 @@ fi
 # Edit below to control the images transition
 export SWWW_TRANSITION_FPS=60
 export SWWW_TRANSITION_STEP=2
-export SWWW_TRANSITION_TYPE=random
 
 # This controls (in seconds) when to switch to the next image
 INTERVAL=300
@@ -22,7 +21,8 @@ while true; do
 		| sort -n | cut -d':' -f2- \
 		| while read -r img; do
             if [[ "$img" != "$1" ]]; then
-			    swww img "$img"
+                echo "Changing wallpaper to ${img}"
+			    swww img --transition-type center --transition-duration 2 "$img"
 			    sleep $INTERVAL
             fi 
 		done
