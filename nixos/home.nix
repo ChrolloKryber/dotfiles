@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./nvim.nix ];
   home.username = "archer";
   home.homeDirectory = "/home/archer";
 

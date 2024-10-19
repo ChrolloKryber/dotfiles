@@ -9,6 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./firefox.nix
+      ./docker.nix
+      #./vbox.nix
       inputs.home-manager.nixosModules.default
       ./stylix.nix
     ];
@@ -32,6 +34,10 @@
       enable = true;
       block = ["fakenews" "gambling"];
     };
+
+#    hosts = {
+#        "0.0.0.0" = ["discord.com"];
+#    };
     
     firewall = {
       allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
@@ -47,7 +53,7 @@
   time.timeZone = "Asia/Kolkata";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_IN";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
@@ -92,31 +98,14 @@
 
   hardware.graphics.enable = true;
 
-  # Virtualisation Settings
-  virtualisation = {
-    docker = {
-      enable = true;
-      rootless = {
-    	enable = true;
-    	setSocketVariable = true;
-      };
-    };
-
-    virtualbox.host.enable = true;
-    virtualbox.guest.enable = true;
-    virtualbox.guest.dragAndDrop = true;
-
-  };
-
-
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+    enable = false;
+#    alsa.enable = true;
+#    alsa.support32Bit = true;
+#    pulse.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -128,7 +117,7 @@
   users.users.archer = {
     isNormalUser = true;
     description = "Archer";
-    extraGroups = [ "adbusers" "networkmanager" "wheel" "adm" "docker" "vboxusers" ];
+    extraGroups = [ "adbusers" "networkmanager" "wheel" "adm" ];
     shell = pkgs.zsh;
   };
   
@@ -152,19 +141,23 @@
     cliphist
     evince
     fastfetch
+    fd
     git
+    go
     gnome-keyring
     grimblast
     kdePackages.kdeconnect-kde
     libnotify
     loupe
     lsd
+    lua
+    luajitPackages.luarocks
     nautilus
     networkmanagerapplet
     obsidian
     pipes
     playerctl
-    pwvucontrol
+    pavucontrol
     python3
     qalculate-gtk
     qbittorrent
@@ -179,6 +172,7 @@
     telegram-desktop
     themechanger
     ungoogled-chromium
+    unzip
     usbutils
     vlc
     vscode
@@ -187,14 +181,10 @@
     wlogout
     xdg-desktop-portal-hyprland
     yt-dlp
+    zig
   ];
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
+  programs.nix-ld.enable = true;
 
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
@@ -296,7 +286,7 @@
   		Type = "oneshot";
   	};
   	serviceConfig = {
-  		ExecStart = "/run/current-system/sw/bin/zsh -c 'echo 85 > /sys/class/power_supply/BAT0/charge_control_end_threshold'";
+  		ExecStart = "/run/current-system/sw/bin/zsh -c 'echo 100 > /sys/class/power_supply/BAT0/charge_control_end_threshold'";
   		Restart = "on-failure";
   	};
   	wantedBy = [ "multi-user.target"  "local-fs.target" "suspend.target"];
@@ -311,6 +301,7 @@
     noto-fonts-color-emoji
     unifont
   ];
+  
   # Tablet Config
   hardware.opentabletdriver = {
   	enable = true;
@@ -325,6 +316,9 @@
   	    success_symbol =  "[λ](bold green)";
 	    error_symbol = "[λ](bold red)";
 	  };
+      aws = {
+          disabled = true;
+      };
   	};
   };
 
