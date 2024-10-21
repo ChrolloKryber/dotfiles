@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, inputs, ... }:
 
 {
@@ -14,7 +10,7 @@
       inputs.home-manager.nixosModules.default
       ./stylix.nix
     ];
-  
+
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
@@ -23,7 +19,7 @@
 
   # Kernel packages
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  
+
   networking = {
     networkmanager.enable = true;
     networkmanager.dns = "none";
@@ -35,10 +31,10 @@
       block = ["fakenews" "gambling"];
     };
 
-#    hosts = {
-#        "0.0.0.0" = ["discord.com"];
-#    };
-    
+    hosts = {
+      "0.0.0.0" = ["discord.com"];
+    };
+
     firewall = {
       allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
       allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
@@ -48,7 +44,7 @@
 
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  
+
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 
@@ -66,7 +62,7 @@
     LC_TELEPHONE = "en_IN";
     LC_TIME = "en_GB.UTF-8";
   };
-  
+
   services.xserver = {
     enable = true; 
     xkb = {
@@ -76,9 +72,9 @@
   };
 
   services.displayManager.sddm= {
-      enable = true;
-      wayland.enable = true;
-      theme = "chili";
+    enable = true;
+    wayland.enable = true;
+    theme = "chili";
   };
 
   # Bluetooth configuration
@@ -103,30 +99,27 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = false;
-#    alsa.enable = true;
-#    alsa.support32Bit = true;
-#    pulse.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-
+  
   programs.adb.enable = true;
+  
   users.users.archer = {
     isNormalUser = true;
     description = "Archer";
     extraGroups = [ "adbusers" "networkmanager" "wheel" "adm" ];
     shell = pkgs.zsh;
   };
-  
+
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     backupFileExtension = "backup";
-    
+
     users = {
       "archer" = import ./home.nix;
+      "root" = import ./root.nix;
     };
   };
 
@@ -189,27 +182,27 @@
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };
-  
+
   ### Hyprland setup
   programs.hyprland = {
-  	enable = true;
-  	xwayland.enable = true;
+    enable = true;
+    xwayland.enable = true;
   };
 
   programs.hyprlock.enable = true;
   # programs.nm-applet.indicator = true;
 
   environment.sessionVariables = {
-  	NIXOS_OZONE_WL = "1";
-  	WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   xdg.portal = {
-  	enable = true;
-  	extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -245,7 +238,7 @@
       enable = true;
       theme = "robbyrussell";
       plugins = [
-      	"git"
+        "git"
       ];
     };
     syntaxHighlighting.enable = true;
@@ -268,8 +261,8 @@
 
   # Steam Config
   programs.steam = {
-  	enable = true;
-  	gamescopeSession.enable = true;
+    enable = true;
+    gamescopeSession.enable = true;
   };
 
   programs.gamemode.enable = true;
@@ -281,16 +274,16 @@
   # Systemd battery threshold service
   systemd.services.battery-charge-threshold = {
     enable = true;
-  	description = "Set the battery maximum charge threshold";
-  	unitConfig = {
-  		Type = "oneshot";
-  	};
-  	serviceConfig = {
-  		ExecStart = "/run/current-system/sw/bin/zsh -c 'echo 100 > /sys/class/power_supply/BAT0/charge_control_end_threshold'";
-  		Restart = "on-failure";
-  	};
-  	wantedBy = [ "multi-user.target"  "local-fs.target" "suspend.target"];
-  	after = [ "local-fs.target" "suspend.target" ];
+    description = "Set the battery maximum charge threshold";
+    unitConfig = {
+      Type = "oneshot";
+    };
+    serviceConfig = {
+      ExecStart = "/run/current-system/sw/bin/zsh -c 'echo 100 > /sys/class/power_supply/BAT0/charge_control_end_threshold'";
+      Restart = "on-failure";
+    };
+    wantedBy = [ "multi-user.target"  "local-fs.target" "suspend.target"];
+    after = [ "local-fs.target" "suspend.target" ];
   };
 
   fonts.packages = with pkgs; [
@@ -301,32 +294,32 @@
     noto-fonts-color-emoji
     unifont
   ];
-  
+
   # Tablet Config
   hardware.opentabletdriver = {
-  	enable = true;
-  	blacklistedKernelModules = [ "wacom" "hid_uclogic"];
+    enable = true;
+    blacklistedKernelModules = [ "wacom" "hid_uclogic"];
   };
-  
+
   # Starship
   programs.starship = {
-  	enable = true;
-  	settings = {
-  	  character = {
-  	    success_symbol =  "[λ](bold green)";
-	    error_symbol = "[λ](bold red)";
-	  };
-      aws = {
-          disabled = true;
+    enable = true;
+    settings = {
+      character = {
+        success_symbol =  "[λ](bold green)";
+        error_symbol = "[λ](bold red)";
       };
-  	};
+      aws = {
+        disabled = true;
+      };
+    };
   };
 
   # Sudo Config
   security.sudo = {
-  	extraConfig = ''
-	  Defaults pwfeedback
-	  Defaults insults
-  	'';
+    extraConfig = ''
+      Defaults pwfeedback
+      Defaults insults
+    '';
   };
 }

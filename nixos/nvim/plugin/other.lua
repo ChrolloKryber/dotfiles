@@ -3,8 +3,5 @@ require("lualine").setup({
     theme = 'onedark',
 })
 
--- Colorscheme
-vim.cmd("colorscheme catppuccin")
-
 -- Comment
 require("Comment").setup()

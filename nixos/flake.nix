@@ -17,8 +17,16 @@
       modules = [
         ./configuration.nix
         inputs.home-manager.nixosModules.default
-	inputs.stylix.nixosModules.stylix
+        inputs.stylix.nixosModules.stylix
       ];
+    };
+    homeConfiguration."archer" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [ stylix.homeManagerModules.stylix ./home.nix ];
+    };
+    homeConfiguration."root" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [ stylix.homeManagerModules.stylix ./root.nix ];
     };
   };
 }

@@ -55,3 +55,27 @@ require('lspconfig').dockerls.setup {
         }
     }
 }
+
+require('lspconfig').nil_ls.setup{
+    on_attach = on_attach,
+}
+
+require('lspconfig').pylsp.setup{
+    on_attach = on_attach,
+}
+
+require("lspconfig").gopls.setup{
+    on_attach = on_attach,
+}
+
+require("lspconfig").docker_compose_language_service.setup{
+    on_attach = on_attach,
+}
+
+require("lspconfig").tflint.setup{
+    on_attach = on_attach,
+}
+
+require("lspconfig").terraform_lsp.setup {
+    on_attach = on_attach,
+}

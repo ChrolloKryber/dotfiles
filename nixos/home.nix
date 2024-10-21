@@ -19,13 +19,33 @@
     kitty
     koodo-reader
     materia-kde-theme
+    proton-pass
     qt5ct
     qt6ct
     spotify
     terraform
+    tflint
   ];
 
   nixpkgs.config.allowUnfree = true;
+
+  stylix = {
+    enable = true;
+    targets = {
+      firefox.enable = true;
+      gtk.enable = true;
+      hyprland.enable = true;
+      kitty.enable = true;
+      kitty.variant256Colors = true;
+      neovim.enable = true;
+      neovim.transparentBackground.main = true;
+      neovim.transparentBackground.signColumn = true;
+      rofi.enable = true;
+      waybar.enable = true;
+      waybar.enableLeftBackColors = true;
+      waybar.enableRightBackColors = true;
+    };
+  };
   
   qt.enable = true;
   qt.platformTheme.name = "qt5ct";
