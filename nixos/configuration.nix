@@ -181,6 +181,7 @@
 
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
+    EDITOR = "nvim";
   };
 
   ### Hyprland setup
