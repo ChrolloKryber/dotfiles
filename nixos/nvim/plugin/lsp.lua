@@ -39,6 +39,9 @@ require('lspconfig').lua_ls.setup {
         Lua = {
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
+            completion = {
+                callSnippet = "Replace",
+            },
         },
     }
 }
@@ -64,18 +67,18 @@ require('lspconfig').pylsp.setup{
     on_attach = on_attach,
 }
 
-require("lspconfig").gopls.setup{
+require('lspconfig').gopls.setup{
     on_attach = on_attach,
 }
 
-require("lspconfig").docker_compose_language_service.setup{
+require('lspconfig').docker_compose_language_service.setup{
     on_attach = on_attach,
 }
 
-require("lspconfig").tflint.setup{
+require('lspconfig').tflint.setup{
     on_attach = on_attach,
 }
 
-require("lspconfig").terraform_lsp.setup {
+require('lspconfig').terraform_lsp.setup {
     on_attach = on_attach,
 }

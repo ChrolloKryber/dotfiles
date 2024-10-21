@@ -31,9 +31,9 @@
       block = ["fakenews" "gambling"];
     };
 
-    hosts = {
-      "0.0.0.0" = ["discord.com"];
-    };
+    #hosts = {
+    #  "0.0.0.0" = ["discord.com"];
+    #};
 
     firewall = {
       allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
@@ -250,7 +250,8 @@
       la="ls -lha";
       lA="ls -lhA";
       nano="nvim";
-      sudo="sudo ";     
+      sudo="sudo ";
+      ssh="TERM=xterm-256color ssh";
     };
     interactiveShellInit = ''
       unalias -a

@@ -21,16 +21,20 @@
 
 
     extraLuaConfig = ''
-      ${builtins.readFile ./nvim/plugin/telescope.lua}
+      ${builtins.readFile ./nvim/options.lua}
+      ${builtins.readFile ./nvim/plugin/neodev.lua}
+      ${builtins.readFile ./nvim/plugin/neotree.lua}
       ${builtins.readFile ./nvim/plugin/lsp.lua}
       ${builtins.readFile ./nvim/plugin/cmp.lua}
       ${builtins.readFile ./nvim/plugin/other.lua}
       ${builtins.readFile ./nvim/plugin/treesitter.lua}
       ${builtins.readFile ./nvim/plugin/colorizer.lua}
-      ${builtins.readFile ./nvim/options.lua}
+      ${builtins.readFile ./nvim/plugin/telescope.lua}
+      ${builtins.readFile ./nvim/plugin/whichkey.lua}
     '';
 
     plugins = with pkgs.vimPlugins; [
+      neo-tree-nvim
       neodev-nvim
       nvim-colorizer-lua
       nvim-cmp
@@ -47,6 +51,7 @@
       telescope-nvim
       telescope-fzf-native-nvim
       vim-nix
+      which-key-nvim
     ];
   };
 }
