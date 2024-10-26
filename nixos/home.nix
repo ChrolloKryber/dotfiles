@@ -1,7 +1,10 @@
-{ config, pkgs, ... }:
-
 {
-  imports = [ ./nvim.nix ];
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
+  # imports = [ ./nvim.nix ];
   home.username = "archer";
   home.homeDirectory = "/home/archer";
 
@@ -20,11 +23,13 @@
     koodo-reader
     materia-kde-theme
     proton-pass
-    qt5ct
+    libsForQt5.qt5ct
     qt6ct
+    rofi-wayland
     spotify
     terraform
     tflint
+    vesktop
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -37,16 +42,16 @@
       hyprland.enable = true;
       kitty.enable = true;
       kitty.variant256Colors = true;
-      neovim.enable = true;
-      neovim.transparentBackground.main = true;
-      neovim.transparentBackground.signColumn = true;
+      neovim.enable = false;
+      neovim.transparentBackground.main = false;
+      neovim.transparentBackground.signColumn = false;
       rofi.enable = true;
       waybar.enable = true;
       waybar.enableLeftBackColors = true;
       waybar.enableRightBackColors = true;
     };
   };
-  
+
   qt.enable = true;
   qt.platformTheme.name = "qt5ct";
   qt.style.name = "adwaita-dark";
@@ -59,7 +64,6 @@
       name = "Paper";
     };
   };
-
 
   xdg.mimeApps = {
     enable = true;

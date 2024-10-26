@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stylix.url = "github:danth/stylix";
+    nixvim.url = "github:ChrolloKryber/nixvim";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -11,7 +12,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    nixvim,
+    home-manager,
+    stylix,
+    ...
+  } @ inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
@@ -22,11 +30,7 @@
     };
     homeConfiguration."archer" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [ stylix.homeManagerModules.stylix ./home.nix ];
-    };
-    homeConfiguration."root" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [ stylix.homeManagerModules.stylix ./root.nix ];
+      modules = [stylix.homeManagerModules.stylix ./home.nix];
     };
   };
 }

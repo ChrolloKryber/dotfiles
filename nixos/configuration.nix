@@ -1,16 +1,18 @@
-{ config, pkgs, inputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./firefox.nix
-      ./docker.nix
-      #./vbox.nix
-      inputs.home-manager.nixosModules.default
-      ./stylix.nix
-    ];
-
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./firefox.nix
+    ./docker.nix
+    #./vbox.nix
+    inputs.home-manager.nixosModules.default
+    ./stylix.nix
+  ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
@@ -23,25 +25,30 @@
   networking = {
     networkmanager.enable = true;
     networkmanager.dns = "none";
-    hostName = "NixOS"; # Define your hostname.
-    nameservers = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" ];
+    hostName = "NixOS";
+    nameservers = ["1.1.1.1" "1.0.0.1" "8.8.8.8"];
 
     stevenblack = {
       enable = true;
       block = ["fakenews" "gambling"];
     };
 
-    #hosts = {
-    #  "0.0.0.0" = ["discord.com"];
-    #};
-
     firewall = {
-      allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
-      allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+      allowedTCPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
       allowedTCPPorts = [22];
     };
   };
-
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -64,14 +71,14 @@
   };
 
   services.xserver = {
-    enable = true; 
+    enable = true;
     xkb = {
       layout = "us";
     };
     videoDrivers = ["amdgpu"];
   };
 
-  services.displayManager.sddm= {
+  services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
     theme = "chili";
@@ -95,31 +102,34 @@
   hardware.graphics.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
-    enable = false;
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # jack.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  
+
   programs.adb.enable = true;
-  
+
   users.users.archer = {
     isNormalUser = true;
     description = "Archer";
-    extraGroups = [ "adbusers" "networkmanager" "wheel" "adm" ];
+    extraGroups = ["adbusers" "networkmanager" "wheel" "adm"];
     shell = pkgs.zsh;
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
     backupFileExtension = "backup";
 
     users = {
       "archer" = import ./home.nix;
-      "root" = import ./root.nix;
     };
   };
 
@@ -129,6 +139,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    alejandra
+    brave
     brightnessctl
     busybox
     cliphist
@@ -145,6 +157,7 @@
     lsd
     lua
     luajitPackages.luarocks
+    mpv
     nautilus
     networkmanagerapplet
     obsidian
@@ -155,7 +168,6 @@
     qalculate-gtk
     qbittorrent
     ripgrep
-    rofi-wayland
     ryzenadj
     sddm-chili-theme
     spotube
@@ -164,17 +176,14 @@
     swww
     telegram-desktop
     themechanger
-    ungoogled-chromium
     unzip
     usbutils
-    vlc
-    vscode
     waybar
     wl-clipboard
     wlogout
-    xdg-desktop-portal-hyprland
     yt-dlp
     zig
+    inputs.nixvim.packages.x86_64-linux.default
   ];
 
   programs.nix-ld.enable = true;
@@ -188,10 +197,10 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    portalPackage = pkgs.pkgs.xdg-desktop-portal-hyprland;
   };
 
   programs.hyprlock.enable = true;
-  # programs.nm-applet.indicator = true;
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -200,9 +209,11 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
   };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -231,8 +242,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
-
-  # ZSH Config  
+  # ZSH Config
   programs.zsh = {
     enable = true;
     ohMyZsh = {
@@ -245,13 +255,13 @@
     syntaxHighlighting.enable = true;
     autosuggestions.enable = true;
     shellAliases = {
-      ls="lsd";
-      ll="ls -lh";
-      la="ls -lha";
-      lA="ls -lhA";
-      nano="nvim";
-      sudo="sudo ";
-      ssh="TERM=xterm-256color ssh";
+      ls = "lsd";
+      ll = "ls -lh";
+      la = "ls -lha";
+      lA = "ls -lhA";
+      nano = "nvim";
+      sudo = "sudo ";
+      ssh = "TERM=xterm-256color ssh";
     };
     interactiveShellInit = ''
       unalias -a
@@ -284,12 +294,12 @@
       ExecStart = "/run/current-system/sw/bin/zsh -c 'echo 100 > /sys/class/power_supply/BAT0/charge_control_end_threshold'";
       Restart = "on-failure";
     };
-    wantedBy = [ "multi-user.target"  "local-fs.target" "suspend.target"];
-    after = [ "local-fs.target" "suspend.target" ];
+    wantedBy = ["multi-user.target" "local-fs.target" "suspend.target"];
+    after = ["local-fs.target" "suspend.target"];
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
+    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly"];})
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
@@ -300,7 +310,7 @@
   # Tablet Config
   hardware.opentabletdriver = {
     enable = true;
-    blacklistedKernelModules = [ "wacom" "hid_uclogic"];
+    blacklistedKernelModules = ["wacom" "hid_uclogic"];
   };
 
   # Starship
@@ -308,7 +318,7 @@
     enable = true;
     settings = {
       character = {
-        success_symbol =  "[λ](bold green)";
+        success_symbol = "[λ](bold green)";
         error_symbol = "[λ](bold red)";
       };
       aws = {
@@ -318,7 +328,10 @@
   };
 
   # Sudo Config
+  nixpkgs.overlays = [(final: prev: {sudo = prev.sudo.override {withInsults = true;};})];
+
   security.sudo = {
+    package = pkgs.sudo.override {withInsults = true;};
     extraConfig = ''
       Defaults pwfeedback
       Defaults insults
