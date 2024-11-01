@@ -10,7 +10,7 @@ Hyprland Setup
 - Hyprland as WM
 - Waybar for status bar
 - Kitty as terminal emulator
-- Neovim (based on [Nixvim](./nixvim)) as editor/IDE of choice
+- Neovim (based on [Nixvim](https://github.com/chrollokryber/nixvim)) as editor/IDE of choice
 - Gruvbox for color themes using Stylix
 ---
 
