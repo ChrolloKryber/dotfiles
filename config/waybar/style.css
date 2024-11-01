@@ -1,6 +1,4 @@
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Catppuccin Mocha */
-
+/* Jakoolit's waybar config updated by ChrolloKryber for gruvbox theme (not complete) */
 * {
   font-family: "JetBrainsMono";
   min-height: 0;
@@ -262,13 +260,10 @@ window#waybar.empty #window {
   color: @maroon;
 }
 
-#pulseaudio {
+#pulseaudio, #pulseaudio.bluetooth {
   color: @aqua;
 }
 
-#pulseaudio.bluetooth {
-  color: @pink;
-}
 #pulseaudio.muted {
   color: @red;
 }
