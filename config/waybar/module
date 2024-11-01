@@ -95,7 +95,7 @@
     },
 
     "hyprland/window": {
-      "separate-outputs": true,
+      "separate-outputs": false,
       "rewrite": {
         "(.*) Mozilla Firefox": "  $1",
         "(.*) Discord (.*)": "  ",
@@ -179,6 +179,8 @@
         "class<org.qbittorrent.qBittorrent>": "󰨈",
         "class<chromium-browser>": "",
         "class<vesktop>": "",
+        "class<Proton Pass>": "",
+          "class<brave-browser>": "󰰷",
       },
     },
 

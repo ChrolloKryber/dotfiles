@@ -4,14 +4,10 @@
 * {
   font-family: "JetBrainsMono";
   min-height: 0;
-  /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
   font-size: 97%;
-  font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
-/* TODO - port mocha to rose-pine*/
-
-@import "./mocha.css";
+@import "./gruvbox.css";
 
 window#waybar {
   transition-property: background-color;
@@ -33,7 +29,7 @@ window#waybar.empty #window {
 
 #taskbar button,
 #workspaces button {
-  color: @overlay1;
+  color: @foreground1;
   box-shadow: none;
   text-shadow: none;
   padding: 0px;
@@ -47,8 +43,8 @@ window#waybar.empty #window {
 #taskbar button:hover,
 #workspaces button:hover {
   border-radius: 10px;
-  color: @peach;
-  background-color: @surface0;
+  color: @orange_soft;
+  background-color: @background3;
   padding-left: 2px;
   padding-right: 2px;
   animation: gradient_f 20s ease-in infinite;
@@ -56,13 +52,15 @@ window#waybar.empty #window {
 }
 
 #workspaces button.persistent {
-  color: @surface1;
+  color: @background4;
   border-radius: 10px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 #taskbar button.active,
 #workspaces button.active {
-  color: @mauve;
+  color: @foreground0;
   border-radius: 10px;
   padding-left: 8px;
   padding-right: 8px;
@@ -71,14 +69,14 @@ window#waybar.empty #window {
 }
 
 #workspaces button.urgent {
-  color: @red;
+  color: @red_soft;
   border-radius: 0px;
 }
 
 /* This section can be use if you want to separate waybar modules */
 .modules-left, .modules-center, .modules-right {
-  background: #1e1e2e;
-  border: 0.5px solid @overlay0;
+  background: @background_hard;
+  border: 0.5px solid @foreground4;
   padding-top: 2px;
   padding-bottom: 2px;
   padding-right: 4px;
@@ -86,9 +84,9 @@ window#waybar.empty #window {
   border-radius: 10px;
 } 
 
-.modules-left, .modules-right {
-  border: 1px solid @blue;
-} 
+/*.modules-left, .modules-right {*/
+/*  border: 1px solid @blue;*/
+/*} */
 
 #backlight,
 #backlight-slider,
@@ -156,7 +154,7 @@ window#waybar.empty #window {
 }
 
 #custom-swaync {
-  color: @flamingo;
+  color: @foreground0;
 }
 
 /*-----Indicators----*/
@@ -184,7 +182,7 @@ window#waybar.empty #window {
 
 @keyframes blink {
   to {
-    color: @surface0;
+    color: @background2;
   }
 }
 
@@ -200,7 +198,7 @@ window#waybar.empty #window {
 }
 
 #clock {
-  color: @yellow;
+  color: @yellow_soft;
 }
 
 #cpu {
@@ -209,15 +207,15 @@ window#waybar.empty #window {
 
 #custom-keyboard,
 #memory {
-  color: @sky;
+  color: @blue_soft;
 }
 
 #disk {
-  color: @sapphire;
+  color: @aqua;
 }
 
 #temperature {
-  color: @teal;
+  color: @aqua_soft;
 }
 
 #temperature.critical {
@@ -232,11 +230,11 @@ window#waybar.empty #window {
 }
 
 #keyboard-state {
-  color: @flamingo;
+  color: @background3;
 }
 
 #custom-cava_mviz {
-	color: @pink;
+	color: @purple_soft;
 }
 
 #custom-menu {
@@ -265,7 +263,7 @@ window#waybar.empty #window {
 }
 
 #pulseaudio {
-  color: @sapphire;
+  color: @aqua;
 }
 
 #pulseaudio.bluetooth {
@@ -276,19 +274,19 @@ window#waybar.empty #window {
 }
 
 #window {
-  color: @mauve;
+  color: @purple_soft;
 }
 
 #mpris {
-  color:@lavender;
+  color:@purple;
 }
 
 #network {
-  color: @teal;
+  color: @blue_soft;
 }
 #network.disconnected,
 #network.disabled {
-  background-color: @surface0;
+  background-color: @background1;
   color: @text;
 }
 #pulseaudio-slider slider {

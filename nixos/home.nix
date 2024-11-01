@@ -18,6 +18,7 @@
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
+    delve
     kdePackages.qtstyleplugin-kvantum
     kitty
     koodo-reader
@@ -42,9 +43,6 @@
       hyprland.enable = true;
       kitty.enable = true;
       kitty.variant256Colors = true;
-      neovim.enable = false;
-      neovim.transparentBackground.main = false;
-      neovim.transparentBackground.signColumn = false;
       rofi.enable = true;
       waybar.enable = true;
       waybar.enableLeftBackColors = true;

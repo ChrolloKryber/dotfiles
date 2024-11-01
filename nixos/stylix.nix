@@ -10,7 +10,7 @@
     autoEnable = true;
     polarity = "dark";
     image = ./wallpaper.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
     fonts = {
       monospace = {
@@ -28,8 +28,10 @@
       };
     };
 
-    cursor.package = pkgs.oreo-cursors-plus;
-    cursor.name = "oreo_red_cursors";
-    opacity.desktop = 0.9;
+    cursor = {
+      package = pkgs.oreo-cursors-plus;
+      name = "oreo_spark_light_sea_green_bordered_cursors";
+      size = 32;
+    };
   };
 }

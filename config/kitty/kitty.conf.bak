@@ -6,6 +6,6 @@ close_on_child_death yes
 
 
 # BEGIN_KITTY_THEME
-# Gruvbox Dark Hard
+# Cyberdream
 include current-theme.conf
 # END_KITTY_THEME

@@ -9,7 +9,7 @@
     ./hardware-configuration.nix
     ./firefox.nix
     ./docker.nix
-    #./vbox.nix
+    ./vbox.nix
     inputs.home-manager.nixosModules.default
     ./stylix.nix
   ];
@@ -84,6 +84,12 @@
     theme = "chili";
   };
 
+  services.jackett = {
+    enable = true;
+    port = 1111;
+    openFirewall = true;
+  };
+
   # Bluetooth configuration
   hardware.bluetooth = {
     enable = true;
@@ -120,7 +126,7 @@
   users.users.archer = {
     isNormalUser = true;
     description = "Archer";
-    extraGroups = ["adbusers" "networkmanager" "wheel" "adm"];
+    extraGroups = ["adbusers" "networkmanager" "wheel" "adm" "jackett"];
     shell = pkgs.zsh;
   };
 
@@ -158,6 +164,7 @@
     lua
     luajitPackages.luarocks
     mpv
+    mpvpaper
     nautilus
     networkmanagerapplet
     obsidian
