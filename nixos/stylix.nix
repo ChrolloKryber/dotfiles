@@ -33,5 +33,6 @@
       name = "oreo_spark_light_sea_green_bordered_cursors";
       size = 32;
     };
+    targets.gnome.enable = true;
   };
 }

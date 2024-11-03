@@ -50,6 +50,8 @@
     };
   };
 
+  systemd.network.wait-online.enable = false;
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
@@ -75,14 +77,15 @@
     xkb = {
       layout = "us";
     };
+
+    displayManager.gdm = {
+      wayland = true;
+      enable = true;
+    };
     videoDrivers = ["amdgpu"];
   };
 
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    theme = "chili";
-  };
+  services.httpd.enable = false;
 
   services.jackett = {
     enable = true;
@@ -164,7 +167,11 @@
     lua
     luajitPackages.luarocks
     mpv
-    mpvpaper
+    mpvScripts.uosc
+    mpvScripts.sponsorblock
+    mpvScripts.mpris
+    mpvScripts.mpv-notify-send
+    mpvScripts.mpv-playlistmanager
     nautilus
     networkmanagerapplet
     obsidian
@@ -176,9 +183,6 @@
     qbittorrent
     ripgrep
     ryzenadj
-    sddm-chili-theme
-    spotube
-    starship
     swaynotificationcenter
     swww
     telegram-desktop
@@ -268,7 +272,6 @@
       lA = "ls -lhA";
       nano = "nvim";
       sudo = "sudo ";
-      ssh = "TERM=xterm-256color ssh";
     };
     interactiveShellInit = ''
       unalias -a
