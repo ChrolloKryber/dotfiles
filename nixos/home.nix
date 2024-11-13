@@ -28,6 +28,7 @@
     qt6ct
     rofi-wayland
     spotify
+    swappy
     terraform
     tflint
     vesktop

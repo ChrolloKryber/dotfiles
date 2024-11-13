@@ -76,6 +76,7 @@
     enable = true;
     xkb = {
       layout = "us";
+      variant = "colemak";
     };
 
     displayManager.gdm = {
@@ -85,7 +86,9 @@
     videoDrivers = ["amdgpu"];
   };
 
+  console.useXkbConfig = true;
   services.httpd.enable = false;
+  services.gvfs.enable = true;
 
   services.jackett = {
     enable = true;
@@ -154,6 +157,7 @@
     busybox
     cliphist
     evince
+    exfat
     fastfetch
     fd
     git
@@ -167,12 +171,8 @@
     lua
     luajitPackages.luarocks
     mpv
-    mpvScripts.uosc
-    mpvScripts.sponsorblock
-    mpvScripts.mpris
-    mpvScripts.mpv-notify-send
-    mpvScripts.mpv-playlistmanager
     nautilus
+    ncdu
     networkmanagerapplet
     obsidian
     pipes
@@ -187,6 +187,7 @@
     swww
     telegram-desktop
     themechanger
+    unrar
     unzip
     usbutils
     waybar
