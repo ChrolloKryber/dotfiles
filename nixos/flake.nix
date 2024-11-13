@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stylix.url = "github:danth/stylix";
-    nixvim.url = "github:ChrolloKryber/nixvim";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -15,7 +14,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixvim,
     home-manager,
     stylix,
     ...

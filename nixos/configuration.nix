@@ -173,6 +173,7 @@
     mpv
     nautilus
     ncdu
+    neovim
     networkmanagerapplet
     obsidian
     pipes
@@ -195,7 +196,6 @@
     wlogout
     yt-dlp
     zig
-    inputs.nixvim.packages.x86_64-linux.default
   ];
 
   programs.nix-ld.enable = true;
@@ -267,6 +267,8 @@
     syntaxHighlighting.enable = true;
     autosuggestions.enable = true;
     shellAliases = {
+      vi = "nvim";
+      vim = "nvim";
       ls = "lsd";
       ll = "ls -lh";
       la = "ls -lha";
@@ -276,7 +278,6 @@
     };
     interactiveShellInit = ''
       unalias -a
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
       source ${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh
       eval "$(${pkgs.starship}/bin/starship init zsh)"
     '';
@@ -313,9 +314,7 @@
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly"];})
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
     noto-fonts-color-emoji
-    unifont
   ];
 
   # Tablet Config
