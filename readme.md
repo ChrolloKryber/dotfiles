@@ -1,6 +1,7 @@
 ### NixOS config
-[WIP] Config for my NixOS system, will update as I explore more
-
+```diff
+-Switched to Arch, no further updates
+```
 
 Hyprland Setup
 ---
