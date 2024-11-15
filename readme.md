@@ -1,16 +1,16 @@
-### NixOS config
-[WIP] Config for my NixOS system, will update as I explore more
-
+# ArchBTW
+Back to Arch after trying out NixOS
 
 Hyprland Setup
 ---
-![NixOS Desktop](Desktop.png)
-![Tiling](NixOS.png)
+![Desktop](./Desktop.png)
+![SDDM](./SDDM.png)
+
 ### My Environment
 - Hyprland as WM
 - Waybar for status bar
 - Kitty as terminal emulator
-- Neovim (based on [Nixvim](https://github.com/chrollokryber/nixvim)) as editor/IDE of choice
+- [Neovim](https://github.com/chrollokryber/neovim) as editor/IDE of choice
 - Gruvbox for color themes using Stylix
 ---
 
