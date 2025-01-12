@@ -35,8 +35,6 @@
     "custom/separator#line",
     "backlight",
     "custom/separator#line",
-    "battery",
-    "custom/separator#line",
     "tray",
     "custom/separator#line",
     "group/power"

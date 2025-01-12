@@ -149,10 +149,6 @@
       "persistent-workspaces": {
         "1": [],
         "2": [],
-        "3": [],
-        "4": [],
-        "5": [],
-        "6": [],
       },
       "window-rewrite-default": "?",
       "window-rewrite": {
@@ -176,6 +172,7 @@
         "class<spotify>|title<Spotify Premium|Spotify>": "",
         "class<firefox>": "",
         "class<kitty>": "",
+        "class<ghost.ty>": "",
         "class<code-url-handler>": "󰨞",
         "class<[Ss]team>": "",
         "class<org.qbittorrent.qBittorrent>": "󰨈",
@@ -183,8 +180,10 @@
         "class<vesktop>": "",
         "class<Proton Pass>": "",
         "class<librewolf>": "",
+        "class<zen>": "Z",
         "class<brave-browser|chromium>": "",
         "class<swappy>": "",
+        "class<evince>": "",
       },
     },
 
@@ -230,7 +229,7 @@
       "on-scroll-up": "brightnessctl set +5%",
       "on-scroll-down": "brightnessctl set 5%-",
       "on-click-middle": "hyprctl keyword monitor 'eDP-1, disable'",
-      "on-click-right": "hyprctl keyword monitor 'eDP-1, 1920x1080@60, 1920x0, 1.2'",
+      "on-click-right": "hyprctl keyword monitor 'eDP-1, 1920x1080@60, 0x0, 1.0'",
     },
 
     "battery": {

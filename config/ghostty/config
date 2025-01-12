@@ -1,0 +1,11 @@
+theme = GruvboxDark
+gtk-titlebar = true
+gtk-wide-tabs = false
+bold-is-bright = true
+cursor-style = block
+cursor-style-blink = true
+shell-integration-features = no-cursor
+mouse-hide-while-typing = true
+class = "ghost.ty"
+window-padding-x = 2,0
+window-padding-y = 0
