@@ -1,11 +1,35 @@
-map ctrl+shift+t new_tab_with_cwd
+font_features MonoLisa-Regular +zero +ss02 +ss03 +ss06 +ss07 +ss08 +ss09 +ss11 +ss13 +ss16 +ss17
+font_features MonoLisa-Bold +zero +ss02 +ss03 +ss06 +ss07 +ss08 +ss09 +ss11 +ss13 +ss16 +ss17
+font_features MonoLisa-Italic +zero +ss02 +ss03 +ss06 +ss07 +ss08 +ss09 +ss11 +ss13 +ss16 +ss17
+font_features MonoLisa-Bold-Italic +zero +ss02 +ss03 +ss06 +ss07 +ss08 +ss09 +ss11 +ss13 +ss16 +ss17
+
+font_size 12.0
+font_family         MonoLisa
+bold_font           MonoLisa Bold
+italic_font         MonoLisa Italic
+bold_italic_font    MonoLisa Bold Italic
+confirm_os_window_close 0
+
+# change to x11 or wayland or leave auto
+linux_display_server auto
+
+scrollback_lines 2000
+wheel_scroll_min_lines 1
+
+enable_audio_bell no
+
+window_padding_width 4
+# selection_foreground none
+# selection_background none
+# foreground #dddddd
+# background #000000
+# cursor #dddddd
 map ctrl+shift+enter new_window_with_cwd
-map ctrl+l no_op
+map ctrl+shift+t new_tab_with_cwd
 close_on_child_death yes
 
 
-
 # BEGIN_KITTY_THEME
-# Cyberdream
+# Gruvbox Dark Hard
 include current-theme.conf
 # END_KITTY_THEME

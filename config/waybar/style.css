@@ -1,6 +1,17 @@
 /* Jakoolit's waybar config updated by ChrolloKryber for gruvbox theme (not complete) */
 * {
-  font-family: "JetBrainsMono NF";
+  font-family: "MonoLisa Nerd Font";
+  font-feature-settings: "zero";
+  font-feature-settings: "ss02";
+  font-feature-settings: "ss03";
+  font-feature-settings: "ss06";
+  font-feature-settings: "ss07";
+  font-feature-settings: "ss08";
+  font-feature-settings: "ss09";
+  font-feature-settings: "ss11";
+  font-feature-settings: "ss13";
+  font-feature-settings: "ss16";
+  font-feature-settings: "ss17"; 
   min-height: 0;
   font-size: 97%;
 }
